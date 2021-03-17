@@ -196,8 +196,11 @@ NSString *const pushPluginApplicationDidBecomeActiveNotification = @"pushPluginA
     pushHandler.notificationMessage = notification.request.content.userInfo;
     pushHandler.isInline = YES;
     [pushHandler notificationReceived];
+    
+    // fix the foreground code to display the notification
+    // Display the alert using the content provided by the notification.
+    completionHandler(UNNotificationPresentationOptionAlert);
 
-    completionHandler(UNNotificationPresentationOptionNone);
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
